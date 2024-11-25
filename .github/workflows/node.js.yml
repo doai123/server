@@ -24,7 +24,7 @@ jobs:
         script: |
           cd /home/data
           mkdir btl_web
-          cd btL-web
+          cd btl-web
           git fetch https://github.com/doai123/server.git
           npm install
           npm run build

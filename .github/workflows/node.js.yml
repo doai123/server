@@ -31,12 +31,13 @@ jobs:
               mkdir -p /home/data/btl_web
               cd /home/data/btl_web
               git clone https://github.com/doai123/server.git
+              cd /home/data/btl_web/server
               npm install
               npm run build
               pm2 start "serve -s dist" --name web
             else
               echo "Directory btl_web already exists."
-              cd /home/data/btl_web
+              cd /home/data/btl_web/server
               git pull origin main  # Cập nhật repository nếu có thay đổi
               npm install  # Cài đặt lại các phụ thuộc nếu có thay đổi
               npm run build  # Build lại project nếu cần

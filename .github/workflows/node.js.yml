@@ -22,13 +22,13 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: 22
         script: |
-        cd /home/data
-        mkdir btl_web
-        cd btL-web
-        git fetch origin https://github.com/doai123/server.git
-        npm install
-        npm run build
-        pm2 start "serve -s dist" --name web
+          cd /home/data
+          mkdir btl_web
+          cd btL-web
+          git fetch origin https://github.com/doai123/server.git
+          npm install
+          npm run build
+          pm2 start "serve -s dist" --name web
         
         
         

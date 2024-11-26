@@ -54,6 +54,8 @@ jobs:
               echo "Docker is not installed. Exiting deployment."
               snap install docker
               systemctl enable docker
+              systemctl status docker
+              sleep 10s
               mkdir /home
               cd /home
               mkdir data

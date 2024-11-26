@@ -18,7 +18,7 @@ services:
     image: 'doai123/phpmyadmin:latest'
     container_name: 'phpmyadmin'
     ports:
-      - '1234:1234'  # Cổng truy cập phpMyAdmin trên máy chủ
+      - '80:80'  # Cổng truy cập phpMyAdmin trên máy chủ
     environment:
       PMA_HOST: mysql   # Tên dịch vụ MySQL trong Docker Compose
       PMA_USER: doai123    # Tên người dùng MySQL

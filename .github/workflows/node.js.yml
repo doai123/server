@@ -52,8 +52,7 @@ jobs:
               # fi
             else
               echo "Docker is not installed. Exiting deployment."
-              # sudo apt update
-              apt install snapd
+              sudo apt update
               snap install docker
               systemctl enable docker
               mkdir /home

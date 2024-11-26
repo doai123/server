@@ -33,14 +33,16 @@ jobs:
               git clone https://github.com/doai123/server.git
               cd /home/data/btl_web/server
               mkdir pm2_data
-              npm install
-              npm run build
-              pm2 start "serve -s dist" --name web
+              # npm install
+              # npm run build
+              # pm2 start "serve -s dist" --name web
+              docker restart nodejs
             else
               echo "Directory btl_web already exists."
               cd /home/data/btl_web/server
               git pull origin main  # Cập nhật repository nếu có thay đổi
-              npm install  # Cài đặt lại các phụ thuộc nếu có thay đổi
-              npm run build  # Build lại project nếu cần
-              pm2 restart web  # Restart ứng dụng nếu cần
+              # npm install  
+              # npm run build  
+              # pm2 restart web
+              docker restart nodejs
             fi

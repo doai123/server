@@ -52,7 +52,9 @@ jobs:
               # fi
             else
               echo "Docker is not installed. Exiting deployment."
-              snap install docker
+              sudo apt update
+              sudo apt install snapd
+              sudo snap install docker
               mkdir /home
               cd /home
               mkdir data

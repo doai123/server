@@ -32,6 +32,7 @@ jobs:
               cd /home/data/btl_web
               git clone https://github.com/doai123/server.git
               cd /home/data/btl_web/server
+              mkdir pm2_data
               npm install
               npm run build
               pm2 start "serve -s dist" --name web

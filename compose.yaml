@@ -67,7 +67,7 @@ services:
     command: /bin/sh -c "
       if [ ! -f /btl_web/server/first_run_flag ]; then
       echo 'First run detected, installing dependencies...';
-      cd /btl_web && npm install && npm run build;
+      cd /btl_web/server && npm install && npm run build;
       pm2 start 'serve -s dist' --name web;
       touch /btl_web/server/first_run_flag;
       pm2 save;

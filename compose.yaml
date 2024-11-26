@@ -47,7 +47,6 @@ services:
     image: 'doai123/nginx'# Docker image của ứng dụng Spring Boot
     container_name: 'nginx'
     ports:
-      - '80:80'
       - '443:443'  # Cổng cho ứng dụng Spring Boot của bạn
     volumes:
       - /home/data/default.conf:/etc/nginx/conf.d/default.conf  # Bind mount từ Windows vào container (thư mục data trong C:/)

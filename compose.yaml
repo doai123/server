@@ -12,7 +12,8 @@ services:
       - '3306:3306'
     volumes:
       - /home/data/mysql:/var/lib/mysql
-    command: ["bash", "-c", "docker-entrypoint.sh mysqld & sleep 10 && mysql -u root Doaivip123@ < /var/lib/mysql/tmp/data.sql"]
+      - /home/data/tmp:/tmp
+    command: ["bash", "-c", "docker-entrypoint.sh mysqld & sleep 10 && mysql -u root Doaivip123@ < /tmp/data.sql"]
     networks:
       - my-network
 
@@ -102,8 +103,8 @@ services:
     ports:
       - '9000:9000'  # Port truy cập giao diện Portainer
     volumes:
-      - '/var/run/docker.sock:/var/run/docker.sock'  # Để Portainer có thể quản lý Docker daemon
-      - 'portainer_data:/data'  # Lưu trữ dữ liệu của Portainer
+      - /home/data/portainer:/var/run  # Để Portainer có thể quản lý Docker daemon
+      - /home/data/portainer/portainer_data:/data'  # Lưu trữ dữ liệu của Portainer
     restart: always
     networks:
       - my-network
@@ -114,6 +115,12 @@ volumes:
   portainer_data:
     driver: local
   spring-data:
+    driver: local
+  portainer-data:
+    driver: local
+  nodejs-data:
+    driver: local
+  nginx-data:
     driver: local
 
 networks:

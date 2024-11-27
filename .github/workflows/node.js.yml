@@ -57,14 +57,14 @@ jobs:
               apt update
               apt install snapd
               sleep 10s
-              systemctl enable snapd
-              systemctl start snapd
-              systemctl enable snapd.socket
-              systemctl start snapd.socket
-              sleep 10s
+              # systemctl enable snapd
+              # systemctl start snapd
+              # systemctl enable snapd.socket
+              # systemctl start snapd.socket
+              # sleep 10s
               snap install docker
-              systemctl enable docker
-              systemctl start docker
+              # systemctl enable docker
+              # systemctl start docker
               systemctl status docker
               sleep 10s
               mkdir data

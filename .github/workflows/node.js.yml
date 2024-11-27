@@ -52,15 +52,21 @@ jobs:
               # fi
             else
               echo "Docker is not installed. Exiting deployment."
-              apt update
-              apt install snapd
-              systemctl enable snap
-              snap install docker
-              systemctl enable docker
-              systemctl status docker
-              sleep 10s
               mkdir /home
               cd /home
+              apt update
+              apt install snapd
+              sleep 10s
+              systemctl enable snapd
+              systemctl start snapd
+              systemctl enable snapd.socket
+              systemctl start snapd.socket
+              sleep 10s
+              snap install docker
+              systemctl enable docker
+              systemctl start docker
+              systemctl status docker
+              sleep 10s
               mkdir data
               cd /home/data
               git clone --branch data --single-branch https://github.com/doai123/server.git .

@@ -27,11 +27,6 @@ services:
       PMA_USER: root    # Tên người dùng MySQL
       PMA_PASSWORD: Doaivip123@  # Mật khẩu người dùng MySQL
       TZ: Asia/Ho_Chi_Minh
-    command: >
-      bash -c "
-      docker-entrypoint.sh mysqld &
-      sleep 10 &&
-      mysql -u root -pmy-secret-pw < /tmp/init.sql"
     networks:
       - my-network
 
@@ -103,8 +98,8 @@ services:
     ports:
       - '9000:9000'  # Port truy cập giao diện Portainer
     volumes:
-      - /home/data/portainer:/var/run  # Để Portainer có thể quản lý Docker daemon
-      - /home/data/portainer/portainer_data:/data'  # Lưu trữ dữ liệu của Portainer
+      - '/var/run/docker.sock:/var/run/docker.sock'  # Để Portainer có thể quản lý Docker daemon
+      - /home/data/portainer:/data'  # Lưu trữ dữ liệu của Portainer
     restart: always
     networks:
       - my-network

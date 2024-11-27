@@ -55,7 +55,6 @@ jobs:
               sudo apt update
               sudo apt install -y snapd
               sudo snap install docker
-              sudo systemctl start snapd
               sudo systemctl enable docker
               sudo systemctl start docker
               sudo systemctl status docker

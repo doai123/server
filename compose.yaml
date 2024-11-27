@@ -12,8 +12,7 @@ services:
       - '3306:3306'
     volumes:
       - mysql-data:/var/lib/mysql
-      - /home/data/sql:/sql
-    command: ["bash", "-c", "docker-entrypoint.sh mysqld & sleep 10 && mysql -u root Doaivip123@ < /sql/data.sql"]
+    # command: ["bash", "-c", "docker-entrypoint.sh mysqld & sleep 10 && mysql -u root Doaivip123@ < /sql/data.sql"]
     networks:
       - my-network
 

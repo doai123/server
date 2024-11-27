@@ -3,7 +3,7 @@ services:
     image: 'doai123/mysql:latest'
     container_name: 'mysql'
     environment:
-      - 'TZ=Asia/Ho_Chi_Minh'
+      # - 'TZ=Asia/Ho_Chi_Minh'
       - 'MYSQL_DATABASE=btl_web'
       - 'MYSQL_PASSWORD=Doaivip123@'
       - 'MYSQL_ROOT_PASSWORD=Doaivip123@'

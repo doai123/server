@@ -3,6 +3,7 @@ services:
     image: 'doai123/mysql:latest'
     container_name: 'mysql'
     environment:
+      - 'TZ=Asia/Ho_Chi_Minh'
       - 'MYSQL_DATABASE=btl_web'
       - 'MYSQL_PASSWORD=Doaivip123@'
       - 'MYSQL_ROOT_PASSWORD=Doaivip123@'
@@ -10,7 +11,8 @@ services:
     ports:
       - '3306:3306'
     volumes:
-      - mysql-data:/var/lib/mysql
+      - /home/data/mysql:/var/lib/mysql
+    command: ["bash", "-c", "docker-entrypoint.sh mysqld & sleep 10 && mysql -u root Doaivip123@ < /var/lib/mysql/tmp/init.sql"]
     networks:
       - my-network
 
@@ -21,8 +23,14 @@ services:
       - '80:80'  # Cổng truy cập phpMyAdmin trên máy chủ
     environment:
       PMA_HOST: mysql   # Tên dịch vụ MySQL trong Docker Compose
-      PMA_USER: doai123    # Tên người dùng MySQL
+      PMA_USER: root    # Tên người dùng MySQL
       PMA_PASSWORD: Doaivip123@  # Mật khẩu người dùng MySQL
+      TZ: Asia/Ho_Chi_Minh
+    command: >
+      bash -c "
+      docker-entrypoint.sh mysqld &
+      sleep 10 &&
+      mysql -u root -pmy-secret-pw < /tmp/init.sql"
     networks:
       - my-network
 
@@ -30,6 +38,7 @@ services:
     image: 'doai123/springboot'# Docker image của ứng dụng Spring Boot
     container_name: 'spring-container'
     environment:
+      - 'TZ=Asia/Ho_Chi_Minh'
       - 'SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/btl_web'  # Kết nối Spring Boot với MySQL
       - 'SPRING_DATASOURCE_USERNAME=doai123'  # Tên người dùng MySQL
       - 'SPRING_DATASOURCE_PASSWORD=Doaivip123@'  # Mật khẩu người dùng MySQL
@@ -46,6 +55,8 @@ services:
   nginx:
     image: 'doai123/nginx'# Docker image của ứng dụng Spring Boot
     container_name: 'nginx'
+    environment:
+    - 'TZ=Asia/Ho_Chi_Minh'
     ports:
       - '443:443'  # Cổng cho ứng dụng Spring Boot của bạn
     volumes:
@@ -58,6 +69,8 @@ services:
   nodejs:
     image: 'doai123/nodejs'  # Docker image của ứng dụng Node.js
     container_name: 'nodejs'
+    environment:
+    - 'TZ=Asia/Ho_Chi_Minh'
     ports:
       - '3000:3000'
     volumes:
@@ -84,6 +97,8 @@ services:
   portainer:
     image: 'doai123/portainer'
     container_name: 'portainer'
+    environment:
+    - 'TZ=Asia/Ho_Chi_Minh'
     ports:
       - '9000:9000'  # Port truy cập giao diện Portainer
     volumes:

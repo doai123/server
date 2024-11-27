@@ -3,16 +3,16 @@ services:
     image: 'doai123/mysql:latest'
     container_name: 'mysql'
     environment:
-      # - 'TZ=Asia/Ho_Chi_Minh'
-      - 'MYSQL_DATABASE=btl_web'
-      - 'MYSQL_PASSWORD=Doaivip123@'
-      - 'MYSQL_ROOT_PASSWORD=Doaivip123@'
-      - 'MYSQL_USER=doai123'
+      - MYSQL_DATABASE=btl_web
+      - MYSQL_PASSWORD=Doaivip123@
+      - MYSQL_ROOT_PASSWORD=Doaivip123@
+      - MYSQL_USER=doai123
+      - TZ=Asia/Ho_Chi_Minh
     ports:
       - '3306:3306'
     volumes:
-      - mysql-data:/var/lib/mysql
-    # command: ["bash", "-c", "docker-entrypoint.sh mysqld & sleep 10 && mysql -u root Doaivip123@ < /sql/data.sql"]
+      - /home/data/mysql:/var/lib/mysql
+    command: ["bash", "-c", "docker-entrypoint.sh mysqld & sleep 10 && mysql -u root Doaivip123@ < /var/lib/mysql/tmp/data.sql"]
     networks:
       - my-network
 

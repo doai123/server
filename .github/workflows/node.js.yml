@@ -23,6 +23,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: 22
           script: |
+            MYSQL_PASSWORD=$(cat /home/data/password.txt)
             if command -v docker &> /dev/null; then
               echo "Docker is installed, proceeding with deployment."
               echo ${{ secrets.MY_PASSWORD }}
@@ -41,7 +42,7 @@ jobs:
                 # npm run build
                 # pm2 start "serve -s dist" --name web
                 docker restart nodejs
-                docker exec -i mysql mysql -u doai123 -p"{{ secrets.MY_PASSWORD }}" btl_web < /home/data/sql/data.sql
+                docker exec -i mysql mysql -u doai123 -p${MYSQL_PASSWORD} btl_web < /home/data/sql/data.sql
               # else
               #   echo "Directory btl_web already exists."
               #   cd /home/data/btl_web
@@ -73,5 +74,5 @@ jobs:
               git clone --branch data --single-branch https://github.com/doai123/server.git .
               docker-compose up -d
               sleep 20
-              docker exec -i mysql mysql -u doai123 -p"{{ secrets.MY_PASSWORD }}" btl_web < /home/data/sql/data.sql
+              docker exec -i mysql mysql -u doai123 -p${MYSQL_PASSWORD} btl_web < /home/data/sql/data.sql
             fi

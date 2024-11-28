@@ -56,19 +56,21 @@ jobs:
               cd /home
               apt update
               apt install snapd
-              sleep 10s
+              # sleep 10
               # systemctl enable snapd
               # systemctl start snapd
               # systemctl enable snapd.socket
               # systemctl start snapd.socket
-              # sleep 10s
+              # sleep 10
               snap install docker
               # systemctl enable docker
               # systemctl start docker
               systemctl status docker
-              sleep 10s
+              # sleep 10s
               mkdir data
               cd /home/data
               git clone --branch data --single-branch https://github.com/doai123/server.git .
               docker-compose up -d
+              sleep 20
+              docker exec -it mysql mysql -u doai123 -p$MYSQL_PASSWORD btl_web < /sql/data.sql
             fi

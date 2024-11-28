@@ -48,19 +48,19 @@ services:
     command: ["sh", "-c", "cd /app && mvn clean package -DskipTests && sleep 60s && java -jar /app/target/web.jar"]
     networks:
       - my-network
-  # nginx:
-  #   image: 'doai123/nginx'# Docker image của ứng dụng Spring Boot
-  #   container_name: 'nginx'
-  #   environment:
-  #   - 'TZ=Asia/Ho_Chi_Minh'
-  #   ports:
-  #     - '443:443'  # Cổng cho ứng dụng Spring Boot của bạn
-  #   volumes:
-  #     - /home/data/default.conf:/etc/nginx/conf.d/default.conf  # Bind mount từ Windows vào container (thư mục data trong C:/)
-  #     - /home/data/ssl:/ssl
-  #   command: ["nginx", "-g", "daemon off;"]
-  #   networks:
-  #     - my-network
+  nginx:
+    image: 'doai123/nginx'# Docker image của ứng dụng Spring Boot
+    container_name: 'nginx'
+    environment:
+    - 'TZ=Asia/Ho_Chi_Minh'
+    ports:
+      - '443:443'  # Cổng cho ứng dụng Spring Boot của bạn
+    volumes:
+      - /home/data/default.conf:/etc/nginx/conf.d/default.conf  # Bind mount từ Windows vào container (thư mục data trong C:/)
+      - /home/data/ssl:/ssl
+    command: ["nginx", "-g", "daemon off;"]
+    networks:
+      - my-network
 
   nodejs:
     image: 'doai123/nodejs'  # Docker image của ứng dụng Node.js

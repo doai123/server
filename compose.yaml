@@ -62,34 +62,34 @@ services:
   #   networks:
   #     - my-network
 
-  # nodejs:
-  #   image: 'doai123/nodejs'  # Docker image của ứng dụng Node.js
-  #   container_name: 'nodejs'
-  #   environment:
-  #   - 'TZ=Asia/Ho_Chi_Minh'
-  #   ports:
-  #     - '3000:3000'
-  #   volumes:
-  #     - /home/data/btl_web:/btl_web
-  #     - /home/data/btl_web/pm2_data:/root/.pm2
-  #   command: /bin/sh -c "
-  #     if [ ! -f /btl_web/first_run_flag ]; then
-  #     echo 'First run detected, installing dependencies...';
-  #     cd /btl_web && npm install && npm run build;
-  #     pm2 start 'serve -s dist' --name web;
-  #     touch /btl_web/first_run_flag;
-  #     pm2 save;
-  #     pm2 logs;
-  #     else
-  #     echo 'Not the first run, starting the app...';
-  #     pm2 resurrect;
-  #     cd /btl_web && npm install && npm run build;
-  #     pm2 restart web;
-  #     pm2 save;
-  #     pm2 logs;
-  #     fi"
-  #   networks:
-  #     - my-network
+  nodejs:
+    image: 'doai123/nodejs'  # Docker image của ứng dụng Node.js
+    container_name: 'nodejs'
+    environment:
+    - 'TZ=Asia/Ho_Chi_Minh'
+    ports:
+      - '3000:3000'
+    volumes:
+      - /home/data/btl_web:/btl_web
+      - /home/data/btl_web/pm2_data:/root/.pm2
+    command: /bin/sh -c "
+      if [ ! -f /btl_web/first_run_flag ]; then
+      echo 'First run detected, installing dependencies...';
+      cd /btl_web && npm install && npm run build;
+      pm2 start 'serve -s dist' --name web;
+      touch /btl_web/first_run_flag;
+      pm2 save;
+      pm2 logs;
+      else
+      echo 'Not the first run, starting the app...';
+      pm2 resurrect;
+      cd /btl_web && npm install && npm run build;
+      pm2 restart web;
+      pm2 save;
+      pm2 logs;
+      fi"
+    networks:
+      - my-network
   portainer:
     image: 'doai123/portainer'
     container_name: 'portainer'

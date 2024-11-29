@@ -14,10 +14,10 @@ function Header() {
   return (
     <div className="navbar">
       <div className="navbar-left">
-      <a href="http://localhost:5173"> <h3 className="nav-link">Trang Chủ</h3></a>
+      <a href="/"> <h3 className="nav-link">Trang Chủ</h3></a>
 
       
-      <a href="http://localhost/giohang"> <h3 className="nav-link">Giỏ hàng</h3></a>
+      <a href="/giohang"> <h3 className="nav-link">Giỏ hàng</h3></a>
         <a href="Lienheadmin.html"> <h3 className="nav-link">Liên Hệ</h3></a>
         <a href="GioiThieu.html"><h3 className="nav-link">Giới Thiệu</h3></a>
       </div>
